@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG_Colour_changer</title>
+    <style> 
+        div{
+            background-color:cadetblue;
+            height: 600px;
+            width: auto;
+            border: 4px solid black;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+        h1{
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+        .buttons{
+            height: 60px;
+            width: 100px;
+            color: burlywood;
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>bg colour changes per second</h1>
+        <p>upon clicking the start button the background colour will change automatically!!
+            <br>
+            upon clicking the end button the process will stop.
+        </p>
+        <button class = "buttons" id="start_btn"> start </button>
+        <button class = "buttons" id="end_btn"> end </button>
+    </div>
+</body>
+<script>
+    let start_button = document.querySelector('#start_btn');
+    let ref_start_btn;
+    start_button.addEventListener('click', (e)=>{
+        let element = document.querySelector('div');
+        if(!ref_start_btn){
+            ref_start_btn = setInterval(function(){
+                let e1 = parseInt(Math.random()*256);
+                let e2 = parseInt(Math.random()*256);
+                let e3 = parseInt(Math.random()*256);
+                element.style.backgroundColor=`rgb(${e1}, ${e2}, ${e3})`;
+            }, 1000);
+        }
+    })
+    let end_btn = document.querySelector('#end_btn');
+    end_btn.addEventListener('click', (e)=>{
+        clearInterval(ref_start_btn);
+        ref_start_btn=null;
+    })
+</script>
+</html>
